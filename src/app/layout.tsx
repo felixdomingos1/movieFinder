@@ -5,7 +5,6 @@ import { ToastContainer } from 'react-toastify';
 
 import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
-import Footer from '@/components/footer/footer';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
