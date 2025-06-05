@@ -1,0 +1,11 @@
+{
+  "Home": {
+    "title": "Welcome",
+    "description": "This is the home page"
+  },
+  "NotFound": {
+    "title": "Página não encontrada",
+    "description": "A página que você está procurando não existe.",
+    "backHome" : "Voltar para a página inicial"
+  }
+}
