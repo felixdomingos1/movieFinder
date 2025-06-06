@@ -12,6 +12,7 @@ import GlassNavbar from '@/components/navbar/glass';
 import Footer from '@/components/footer/footer';
 import { Skeleton } from '@/components/components/ui/skeleton';
 import { Movie } from '@/lib/types/movie';
+import MovieError from 'src/app/error/movie-error';
 
 
 export default function MovieDetails({ params }: { params: { id: string } }) {
@@ -25,7 +26,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
                 const data = await fetchMovieDetails(params.id);
                 setMovie(data);
             } catch (err) {
-                setError('Failed to load movie details');
+                setError('Erro ao carregar os detalhes do filme');
                 console.error(err);
             } finally {
                 setLoading(false);
@@ -33,7 +34,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
         };
 
         loadMovie();
-    }, [params.id]); 
+    }, [params.id]);
 
     if (loading) {
         return (
@@ -58,15 +59,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
     }
 
     if (error || !movie) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-                <GlassNavbar search={false} />
-                <div className="container mx-auto px-4 py-8 text-center">
-                    <h1 className="text-2xl font-bold text-red-500">{error || 'Movie not found'}</h1>
-                    <p className="text-gray-400 mt-4">Tente mais tarde por favor</p>
-                </div>
-            </div>
-        );
+        return <MovieError error={error} />;
     }
 
     const posterPath = movie.poster_path
@@ -91,7 +84,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
                     alt={movie.title}
                     fill
                     className="object-cover opacity-50"
-                    priority 
+                    priority
                 />
                 <div className="relative z-20 h-full flex items-end p-4 md:p-8 lg:p-12">
                     <div className="container mx-auto px-4">
