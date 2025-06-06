@@ -111,3 +111,25 @@ export async function fetchUpcomingMovies(page = 1) {
   );
   return response.json();
 }
+
+export async function fetchMoviesByGenre(genreId: string, page = 1) {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=pt-BR&page=${page}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        }
+      }
+    );
+    
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch movies by genre:', error);
+    return { results: [], total_pages: 0 };
+  }
+}
