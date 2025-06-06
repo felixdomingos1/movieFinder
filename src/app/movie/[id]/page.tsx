@@ -33,8 +33,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
         };
 
         loadMovie();
-    }, [params.id]);
-    console.log("O Filme", movie);
+    }, [params.id]); 
 
     if (loading) {
         return (
