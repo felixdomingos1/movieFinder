@@ -9,8 +9,11 @@ export default function NotFound() {
   const t = useTranslations('NotFound');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorVariant, setCursorVariant] = useState('default');
+  const [isClient, setIsClient] = useState(false);
+
 
   useEffect(() => {
+    setIsClient(true);
     const mouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -27,12 +30,13 @@ export default function NotFound() {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
       backgroundColor: '#3b82f6',
+
     },
     text: {
       x: mousePosition.x - 32,
       y: mousePosition.y - 32,
       backgroundColor: '#ffffff',
-      mixBlendMode: 'difference',
+      mixBlendMode: 'difference' as const,
       scale: 1.5,
     },
   };
@@ -42,44 +46,46 @@ export default function NotFound() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
-      {/* Cursor Personalizado */}
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50"
-        animate={cursorVariant}
-        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-      />
+      {isClient && (
+        <motion.div
+          className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50"
+          animate={cursorVariant}
+          variants={variants}
+          transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+        />
+      )}
 
       {/* Efeito de Partículas */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-white rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              opacity: 0,
-              scale: 0,
-            }}
-            animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              opacity: [0, 0.3, 0],
-              scale: [0, Math.random() * 0.5 + 0.5, 0],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-            style={{
-              width: `${Math.random() * 5 + 2}px`,
-              height: `${Math.random() * 5 + 2}px`,
-            }}
-          />
-        ))}
+        {isClient &&
+          [...Array(30)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute bg-white rounded-full"
+              initial={{
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                opacity: 0,
+                scale: 0,
+              }}
+              animate={{
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                opacity: [0, 0.3, 0],
+                scale: [0, Math.random() * 0.5 + 0.5, 0],
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+              style={{
+                width: `${Math.random() * 5 + 2}px`,
+                height: `${Math.random() * 5 + 2}px`,
+              }}
+            />
+          ))}
       </div>
-
       {/* Conteúdo Principal */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
         <motion.div

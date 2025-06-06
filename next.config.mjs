@@ -5,6 +5,7 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
+        domains: ['image.tmdb.org'],
         remotePatterns: [
             {
                 protocol: 'https',
@@ -14,8 +15,9 @@ const nextConfig = {
             },
         ],
     },
-    minimumCacheTTL: 60, 
-    unoptimized: process.env.NODE_ENV === 'development',
+
+    minimumCacheTTL: 60,
+    unoptimized: true,
 };
 
 export default withNextIntl(nextConfig);

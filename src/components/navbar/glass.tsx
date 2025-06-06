@@ -17,7 +17,7 @@ export default function GlassNavbar({ search }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
-  const handleSearch = (e: React.FormEvent) => { 
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     router.push("/search");
     setMenuOpen(false);
@@ -46,7 +46,7 @@ export default function GlassNavbar({ search }: Props) {
           </Link>
           <Link href="/movie" className="hover:text-white flex items-center gap-1">
             <Clapperboard size={16} /> Filmes
-          </Link> 
+          </Link>
           <Link href="/movie/top" className="hover:text-white flex items-center gap-1">
             <Star size={16} /> Top 10
           </Link>
@@ -59,6 +59,7 @@ export default function GlassNavbar({ search }: Props) {
               type="text"
               placeholder="Buscar por filmes..."
               onClick={(e) => handleSearch(e)}
+              aria-disabled
               className="bg-transparent text-white placeholder-white/60 border-none focus:outline-none focus:ring-0 text-sm"
             />
           </form>
@@ -82,7 +83,7 @@ export default function GlassNavbar({ search }: Props) {
             </Link>
             <Link href="/movie" className="flex items-center gap-2" onClick={() => setMenuOpen(false)}>
               <Clapperboard size={16} /> Filmes
-            </Link> 
+            </Link>
             <Link href="/movie/top" className="flex items-center gap-2" onClick={() => setMenuOpen(false)}>
               <Star size={16} /> Top 10
             </Link>
@@ -91,6 +92,8 @@ export default function GlassNavbar({ search }: Props) {
               <form onSubmit={handleSearch} className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full border border-white/20">
                 <Search className="w-4 h-4 text-white/60" />
                 <Input
+                  aria-disabled
+
                   type="text"
                   placeholder="Buscar por filmes..."
                   onClick={(e) => handleSearch(e)}
