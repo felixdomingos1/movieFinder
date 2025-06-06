@@ -96,13 +96,13 @@ O **MovieFinder** é uma aplicação web responsiva que permite:
 ## **📂 Estrutura do Projeto**  
 ```bash
 src/
-├── app/       # Componentes reutilizáveis (MovieCard, SearchBar)
-├── components/       # Componentes reutilizáveis (MovieCard, SearchBar)
-├── constants/            # Rotas da aplicação (Home, Detalhes)
-├── service/         # Lógica de API (fetchMovies, getMovieDetails)
-├── models/           # Estilos globais e Tailwind
-├── lib/            # Funções auxiliares (formatação de dados)
-└── messages/           # Assets (imagens, favicon)
+├── app/        
+├── components/        
+├── constants/          
+├── service/         
+├── models/        
+├── lib/           
+└── messages/           
 ```
 
 ---
