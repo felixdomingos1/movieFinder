@@ -12,7 +12,7 @@ import GlassNavbar from '@/components/navbar/glass';
 import Footer from '@/components/footer/footer';
 import { Skeleton } from '@/components/components/ui/skeleton';
 import { Movie } from '@/lib/types/movie';
- 
+
 
 export default function MovieDetails({ params }: { params: { id: string } }) {
     const [movie, setMovie] = useState<Movie>(null);
@@ -35,7 +35,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
         loadMovie();
     }, [params.id]);
     console.log("O Filme", movie);
-    
+
     if (loading) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -71,19 +71,19 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
     }
 
     const posterPath = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        : "/img/default-poster.png";
+        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        : "/no-poster.jpg";
 
     const backdropPath = movie.backdrop_path
-    ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
-        : "/img/default-backdrop.jpg";
+        ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+        : "/no-backdrop.jpg";
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
             <ParticleBackground />
             <GlowEffects />
             <GlassNavbar search={true} />
-            
+
             {/* Hero Section */}
             <div className="relative h-64 md:h-96 w-full overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent z-10" />
@@ -92,8 +92,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
                     alt={movie.title}
                     fill
                     className="object-cover opacity-50"
-                    priority
-                    unoptimized 
+                    priority 
                 />
                 <div className="relative z-20 h-full flex items-end p-4 md:p-8 lg:p-12">
                     <div className="container mx-auto px-4">
@@ -107,20 +106,25 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
                 </div>
             </div>
 
-            {/* Main Content */}
+
             <div className="container mx-auto px-4 py-8 md:py-12 relative z-30">
                 <div className="flex flex-col md:flex-row gap-6 lg:gap-8 bg-gray-900/90 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-2xl border border-gray-800">
-                    {/* Poster and Buttons */}
+
                     <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-4">
-                        <div className="relative aspect-[2/3] rounded-lg overflow-hidden shadow-2xl border-2 border-gray-700">
-                            <Image
-                                src={posterPath}
-                                alt={movie.title}
-                                fill
-                                className="object-cover"
-                                priority
-                                unoptimized 
-                            />
+                        <div className="relative aspect-[2/3] rounded-lg overflow-hidden shadow-2xl border-2 border-gray-700 bg-gray-800">
+                            {movie.poster_path ? (
+                                <Image
+                                    src={posterPath}
+                                    alt={movie.title}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <span className="text-gray-500">No image available</span>
+                                </div>
+                            )}
                         </div>
 
                         <div className="flex flex-col gap-3">
@@ -213,8 +217,8 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
                                     <h3 className="font-semibold text-gray-400 text-sm sm:text-base">Production</h3>
                                     <div className="flex flex-wrap gap-1 sm:gap-2">
                                         {movie.production_companies.map((company: any) => (
-                                            <span 
-                                                key={company.id} 
+                                            <span
+                                                key={company.id}
                                                 className="text-xs sm:text-sm bg-gray-800 px-2 py-1 rounded"
                                             >
                                                 {company.name}
