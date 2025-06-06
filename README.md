@@ -2,8 +2,8 @@
 
 **Aplicação para buscar filmes, visualizar detalhes e explorar informações usando a API do TMDB.**  
 
-🔗 **Live Demo:** [https://movie-finder-phi-gilt.vercel.app/](https://moviefinder.com)  
-📂 **Repositório:** [https://github.com/felixdomingos1/movieFinder](https://github.com/felixdomingos1/movieFinder)  
+🔗 **Live Demo:** [https://moviefinder.com/](https://movie-finder-phi-gilt.vercel.app/)  
+📂 **Repositório:** [Movie Finder](https://github.com/felixdomingos1/movieFinder)  
 
 ---
 
