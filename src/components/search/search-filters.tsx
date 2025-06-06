@@ -26,11 +26,11 @@ export function SearchFilters({
           <select
             value={filters.type}
             onChange={(e) => onFilterChange('type', e.target.value)}
-            className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none"
+            className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-white/50 appearance-none"
           >
-            <option value="all">Todos</option>
-            <option value="movie">Filmes</option>
-            <option value="tv">Séries</option>
+            <option value="all" className="bg-gray-800 text-white">Todos</option>
+            <option value="movie" className="bg-gray-800 text-white">Filmes</option>
+            <option value="tv" className="bg-gray-800 text-white">Séries</option>
           </select>
         </div>
         <div>
@@ -48,12 +48,12 @@ export function SearchFilters({
           <select
             value={filters.genre}
             onChange={(e) => onFilterChange('genre', e.target.value)}
-            className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white"
+            className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-white/50 appearance-none"
           >
-            <option value="">Todos</option>
-            <option value="28">Ação</option>
-            <option value="12">Aventura</option>
-            <option value="16">Animação</option>
+            <option value="" className="bg-gray-800 text-white">Todos</option>
+            <option value="28" className="bg-gray-800 text-white">Ação</option>
+            <option value="12" className="bg-gray-800 text-white">Aventura</option>
+            <option value="16" className="bg-gray-800 text-white">Animação</option>
           </select>
         </div>
       </div>

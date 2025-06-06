@@ -11,10 +11,11 @@ import { GlowEffects, ParticleBackground } from '@/components/effects/background
 import GlassNavbar from '@/components/navbar/glass';
 import Footer from '@/components/footer/footer';
 import { Skeleton } from '@/components/components/ui/skeleton';
+import { Movie } from '@/lib/types/movie';
  
 
 export default function MovieDetails({ params }: { params: { id: string } }) {
-    const [movie, setMovie] = useState<any>(null);
+    const [movie, setMovie] = useState<Movie>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +34,8 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
 
         loadMovie();
     }, [params.id]);
-
+    console.log("O Filme", movie);
+    
     if (loading) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -62,7 +64,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
                 <GlassNavbar search={false} />
                 <div className="container mx-auto px-4 py-8 text-center">
                     <h1 className="text-2xl font-bold text-red-500">{error || 'Movie not found'}</h1>
-                    <p className="text-gray-400 mt-4">Please try again later</p>
+                    <p className="text-gray-400 mt-4">Tente mais tarde por favor</p>
                 </div>
             </div>
         );
@@ -91,11 +93,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
                     fill
                     className="object-cover opacity-50"
                     priority
-                    unoptimized
-                    onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = '/img/default-backdrop.jpg';
-                    }}
+                    unoptimized 
                 />
                 <div className="relative z-20 h-full flex items-end p-4 md:p-8 lg:p-12">
                     <div className="container mx-auto px-4">
@@ -121,11 +119,7 @@ export default function MovieDetails({ params }: { params: { id: string } }) {
                                 fill
                                 className="object-cover"
                                 priority
-                                unoptimized
-                                onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.src = '/img/default-poster.png';
-                                }}
+                                unoptimized 
                             />
                         </div>
 
